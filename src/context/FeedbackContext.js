@@ -33,13 +33,11 @@ export const FeedbackProvider = ({ children }) => {
 
   const handleUpdatedFeedback = (id, updatedItem) => {
     setFeedback(
-      feedback.map(item => {
-        if (item.id === id) {
-          return (item = updatedItem);
-        }
-        return item;
-      })
+      feedback.map(item =>
+        item.id === id ? { ...item, ...updatedItem } : item
+      )
     );
+    setFeedbackEdit({ item: {}, edit: false });
   };
 
   const handleEditFeedback = item => {
